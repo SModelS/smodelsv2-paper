@@ -1,2 +1,26 @@
 # smodelsv2-paper
-Repository for the SModelS v2.0 physics paper
+A repository to store the code and data for the SModelS v2 physics paper
+
+
+## Basic Installation ##
+
+The script installer.sh will try to fetch and install the following packages:
+
+  * [smodels](https://smodels.github.io/)
+  * [SoftSUSY](https://softsusy.hepforge.org/)  
+
+
+
+## Analysing Results and Plotting ##
+
+The SModelS output can be easily combined using Pandas DataFrames and stored
+as a pickle file, as shown in [results/getIDMResults.ipynb](results/getIDMResults.ipynb).
+
+For plotting the results using the DataFrame pickle file, see [results/plotIDMResults.ipynb](results/plotIDMResults.ipynb)
+
+## Data ##
+
+The data (SLHA files and SModelS output) is stored in the [data](data/) folder
+as tarballs.
+
+

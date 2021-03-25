@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+
+  <head>
+    <title>
+      ScSM_FeynRules.zip on ScotoSinglet – Attachment
+     – FeynRules
+    </title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--[if IE]><script type="text/javascript">
+      if (/^#__msie303:/.test(window.location.hash))
+        window.location.replace(window.location.hash.replace(/^#__msie303:/, '#'));
+    </script><![endif]-->
+        <link rel="search" href="/search" />
+        <link rel="help" href="/wiki/TracGuide" />
+        <link rel="alternate" href="/raw-attachment/wiki/ScotoSinglet/ScSM_FeynRules.zip" type="application/zip; charset=iso-8859-15" title="Original Format" />
+        <link rel="up" href="/wiki/ScotoSinglet" title="ScotoSinglet" />
+        <link rel="start" href="/wiki" />
+        <link rel="stylesheet" href="/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/chrome/common/css/code.css" type="text/css" />
+        <link rel="shortcut icon" href="/chrome/site/cp3blue_small.png" type="image/png" />
+        <link rel="icon" href="/chrome/site/cp3blue_small.png" type="image/png" />
+    <style id="trac-noscript" type="text/css">.trac-noscript { display: none !important }</style>
+      <script type="text/javascript" charset="utf-8" src="/chrome/common/js/jquery.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/chrome/common/js/babel.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/chrome/common/js/trac.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/chrome/common/js/search.js"></script>
+    <script type="text/javascript">
+      jQuery("#trac-noscript").remove();
+      jQuery(document).ready(function($) {
+        $(".trac-autofocus").focus();
+        $(".trac-target-new").attr("target", "_blank");
+        setTimeout(function() { $(".trac-scroll").scrollToTop() }, 1);
+        $(".trac-disable-on-submit").disableOnSubmit();
+      });
+    </script>
+      <script type="text/javascript" src="/chrome/common/js/folding.js"></script>
+      <script type="text/javascript">
+        jQuery(document).ready(function($) {
+          $('#preview table.code').enableCollapsibleColumns($('#preview table.code thead th.content'));
+        });
+      </script>
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="/"><img src="/chrome/site/cp3blue_53.png" alt="" /></a>
+      </div>
+      <form id="search" action="/search" method="get">
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/login">Login</a></li><li><a href="/prefs">Preferences</a></li><li><a href="/wiki/TracGuide">Help/Guide</a></li><li class="last"><a href="/about">About Trac</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first active"><a href="/wiki">Wiki</a></li><li><a href="/timeline">Timeline</a></li><li class="last"><a href="/report">View Tickets</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+        <ul>
+          <li class="last first"><a href="/wiki/ScotoSinglet">Back to ScotoSinglet</a></li>
+        </ul>
+        <hr />
+      </div>
+    <div id="content" class="attachment">
+        <h1><a href="/wiki/ScotoSinglet">ScotoSinglet</a>: ScSM_FeynRules.zip</h1>
+        <table id="info" summary="Description">
+          <tr>
+            <th scope="col">File ScSM_FeynRules.zip, <span title="9706 bytes">9.5 KB</span> (added by abeniwal, <a class="timeline" href="/timeline?from=2020-10-06T14%3A48%3A48%2B02%3A00&amp;precision=second" title="See timeline at 10/06/20 14:48:48">6 months ago</a>)</th>
+          </tr>
+          <tr>
+            <td class="message searchable">
+              <p>
+<a class="wiki" href="/wiki/FeynRules">FeynRules</a> model files
+</p>
+
+            </td>
+          </tr>
+        </table>
+        <div id="preview" class="searchable">
+          
+    <p>
+        <strong>HTML preview not available</strong>, since no preview renderer could handle it.
+      Try <a href="/raw-attachment/wiki/ScotoSinglet/ScSM_FeynRules.zip">downloading</a> the file instead.
+    </p>
+
+        </div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="last first">
+          <a rel="nofollow" href="/raw-attachment/wiki/ScotoSinglet/ScSM_FeynRules.zip">Original Format</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/about"><strong>Trac 1.0.17</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the Trac open source project at<br /><a href="http://trac.edgewall.org/">http://trac.edgewall.org/</a></p>
+    </div>
+  </body>
+</html>
