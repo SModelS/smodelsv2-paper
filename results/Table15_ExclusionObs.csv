@@ -1,0 +1,16 @@
+#: table_doi: 10.17182/hepdata.86565.v1/t16
+#: name: Table 15
+#: description: Lower mass limit as function of gluino lifetime.
+#: data_file: data15.yaml
+#: data_license:   
+#: keyword reactions: P P --> GLUINO GLUINO
+#: keyword observables: M | CLS
+#: keyword phrases: Proton-Proton Scattering | Supersymmetry | SUSY | LLP
+#: keyword cmenergies: 13000.0
+#: SQRT(S) [GEV],13000.0
+#SIMULATED LIFETIME [GEV],OBS LIMIT [GEV]
+6.582e-17,1860
+2.194e-17,1960
+1.316e-17,1980
+0,2000
+
