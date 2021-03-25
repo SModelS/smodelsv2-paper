@@ -20,7 +20,8 @@ For plotting the results using the DataFrame pickle file, see [results/plotIDMRe
 
 ## Data ##
 
-The data (SLHA files and SModelS output) is stored in the [data](data/) folder
-as tarballs.
+Due to GitHub storage limitations the data (SLHA files and SModelS output) should be stored in CERNBox.
+
+
 
 
