@@ -93,12 +93,27 @@ def runSoftSUSY(parserDict):
     logger.debug('SoftSUSY error:\n %s \n' %errorMsg)
     logger.debug('SoftSUSY output:\n %s \n' %output)
 
-    logger.info("Done in %3.2f min" %((time.time()-t0)/60.))
-
-    #Remove parton level events:
+    #Remove input file
     if parser.has_option('options','cleanUp') and parser.get('options','cleanUp') is True:
         os.remove(cardFile)
 
+    #Compute xsecs
+    if parser.has_option('options','computeXsecs') and parser.get('options','computeXsecs') is True:
+        if not parser.has_option('options','smodelsFolder'):
+            logger.error("smodelsFolder not defined")
+            return False
+        smodelsFolder = os.path.abspath(parser.get('options','smodelsFolder'))
+        if not os.path.isdir(smodelsFolder):
+            logger.error("Could not found SModelS folder %s" %smodelsFolder)
+        else:
+            logger.debug("Running ./smodelsTools.py xseccomputer -f %s -e 10000 -p -8" %(outputFile))
+            run = subprocess.Popen('./smodelsTools.py xseccomputer -f %s -e 10000 -p -8' %(outputFile)
+                       ,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=smodelsFolder)
+            output,errorMsg= run.communicate()
+            logger.debug('smodelsTools error:\n %s \n' %errorMsg)
+            logger.debug('smodelsTools output:\n %s \n' %output)
+
+    logger.info("Done in %3.2f min" %((time.time()-t0)/60.))
     now = datetime.datetime.now()
 
     return "Finished running SoftSUSY at %s" %(now.strftime("%Y-%m-%d %H:%M"))
