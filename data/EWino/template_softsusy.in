@@ -1,0 +1,62 @@
+# Example input in SLHA format, and suitable for input to
+# SOFTSUSY (v1.8 or higher): CMSSM10.1.1 input - see arXiv:1109.3859
+Block MODSEL		     # Select model
+    1    0		     # Generic
+Block SMINPUTS		     # Standard Model inputs
+    1	1.279340000e+02	     # alpha^(-1) SM MSbar(MZ)
+    2   1.166370000e-05	     # G_Fermi
+    3   1.172000000e-01	     # alpha_s(MZ) SM MSbar
+    4   9.118760000e+01	     # MZ(pole)
+    5	4.250000000e+00	     # mb(mb) SM MSbar
+    6   1.743000000e+02	     # mtop(pole)
+    7	1.777000000e+00	     # mtau(pole)
+Block EXTPAR  # general MSSM input (! IF uncommented, values replace MINPAR ones)
+         0     4.65294922E+02   # EWSB_scale          
+         1     2.00E+03   # M_1                 
+         2     6.00E+02   # M_2                 
+         3     1.0E+04   # M_3                 
+        11    -1E+02   # A_t                 
+        12    -1E+02   # A_b                 
+        13    -2.51737263E+02   # A_tau               
+        14    -6.77437438E+02   # A_u                 
+        15    -8.59633345E+02   # A_d                 
+        16    -2.53493493E+02   # A_e                 
+        23     1.0E+04   # mu(EWSB)            
+        26     1.0E+04   # MA_pole                  
+        25     1.00000000E+01   # tanbeta(MZ)         
+        31     1.0E+04   # M_eL                
+        32     1.0E+04   # M_muL               
+        33     1.0E+04   # M_tauL              
+        34     1.0E+04   # M_eR                
+        35     1.0E+04   # M_muR               
+        36     1.0E+04   # M_tauR              
+        41     1.0E+04   # M_q1L               
+        42     1.0E+04   # M_q2L               
+        43     1.0E+04   # M_q3L               
+        44     1.0E+04   # M_uR                
+        45     1.0E+04   # M_cR                
+        46     1.0E+04   # M_tR                
+        47     1.0E+04   # M_dR                
+        48     1.0E+04   # M_sR                
+        49     1.0E+04   # M_bR                
+
+Block SOFTSUSY               # Optional SOFTSUSY-specific parameters
+    0   1.000000000e+00      # Calculate decays in output (only for RPC (N)MSSM)
+# The default is that without this, SOFTSUSY will only calculate the spectrum   
+    1   1.000000000e-03      # Numerical precision: suggested range 10^(-3...-6)
+    2   0.000000000e+00	     # Quark mixing parameter: see manual
+    3   0.000000000e+00	     # Additional verbose output?
+    4   1.000000000e+00	     # Change electroweak symmetry breaking scale?
+    6   1.000000000e-04	     # Numerical precision
+    7	0.000000000e+00	     # Number of loops in Higgs mass computation
+   10	0.000000000e+00	     # Force it to SLHA***1*** output?
+   11	1.000000000e+19	     # Gravitino mass
+   12   1.000000000e+00	     # Print spectrum even when point disallowed
+   13	0.000000000e+00	     # Set a tachyonic A^0 to zero mass
+   19   1.000000000e+00      # Include 3-loop SUSY RGEs
+   21   0.000000000e+00	      # Calculate uncertainties in Higgs mass prediction
+   22   0.000000000e+00      # Include 2-loop sparticle mass thresholds
+#   23   0.000000000e+00      # No expansion of 2-loop gluino terms
+#   24   1.000000000e-06      # If decay BR is below this number, don't output
+   25   1.000000000e+00	     # If set to 0, don't calculate 3-body decays (1=default)
+#   27   1.000000000e+03      # Scale to match QEDxQCD to MSSM (default mt)   
