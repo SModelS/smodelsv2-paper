@@ -71,21 +71,28 @@ def runSoftSUSY(parserDict):
         return False
     logger.debug('Input card %s created' %cardFile)
 
-    outputFile = os.path.abspath(parser.get("options","outputFile"))
-    outputFolder = os.path.dirname(outputFile)
-
+    outputFile = parser.get("options","outputFile")
+    outputFolder = os.path.abspath(parser.get("options","outputFolder"))
     #Create output dirs, if do not exist:
     try:
         os.makedirs(outputFolder)
     except:
         pass
 
+    #If outputfile has not been defined, create automatically
+    if not outputFile:
+        outputFile = tempfile.mkstemp(suffix='.slha', prefix='ew_',
+                                       dir=outputFolder)
+        os.close(outputFile[0])
+        outputFile = os.path.abspath(outputFile[1])
+
+
     #Run SoftSUSY
     softsusyFolder = os.path.abspath(parser.get("options","softsusyFolder"))
     if not os.path.isdir(softsusyFolder):
         logger.error("SoftSUSY folder %s not found" %softsusyFolder)
         return False
-    logger.info('Running SoftSUSY with input file: %s ' %cardFile)
+
     logger.debug('Running: %s/softpoint.x leshouches < %s' %(softsusyFolder,cardFile))
     run = subprocess.Popen(' %s/softpoint.x leshouches < %s > %s' %(softsusyFolder,cardFile,outputFile)
                        ,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
@@ -102,18 +109,20 @@ def runSoftSUSY(parserDict):
         if not parser.has_option('options','smodelsFolder'):
             logger.error("smodelsFolder not defined")
             return False
+
+        nevents = int(parser.get('options','nevents'))
         smodelsFolder = os.path.abspath(parser.get('options','smodelsFolder'))
         if not os.path.isdir(smodelsFolder):
             logger.error("Could not found SModelS folder %s" %smodelsFolder)
         else:
-            logger.debug("Running ./smodelsTools.py xseccomputer -f %s -e 10000 -p -8" %(outputFile))
-            run = subprocess.Popen('./smodelsTools.py xseccomputer -f %s -e 10000 -p -8' %(outputFile)
+            logger.debug("Running ./smodelsTools.py xseccomputer -f %s -e %i -p -8" %(outputFile,nevents))
+            run = subprocess.Popen('./smodelsTools.py xseccomputer -f %s -e %i -p -8' %(outputFile,nevents)
                        ,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=smodelsFolder)
             output,errorMsg= run.communicate()
             logger.debug('smodelsTools error:\n %s \n' %errorMsg)
             logger.debug('smodelsTools output:\n %s \n' %output)
 
-    logger.info("Done in %3.2f min" %((time.time()-t0)/60.))
+    logger.debug("Done in %3.2f min" %((time.time()-t0)/60.))
     now = datetime.datetime.now()
 
     return "Finished running SoftSUSY at %s" %(now.strftime("%Y-%m-%d %H:%M"))
@@ -149,19 +158,35 @@ def main(parfile,verbose):
     pool = multiprocessing.Pool(processes=ncpus)
     children = []
     #Loop over parsers and submit jobs
-    logger.info("Submitting %i jobs over %i cores" %(len(parserList),ncpus))
     for newParser in parserList:
+        keepParser = True
+        if newParser.has_section("conditions"):
+            for option in newParser.options("conditions"):
+                condStr = newParser.get("conditions",option,raw=False)
+                try:
+                    cond = eval(condStr)
+                    if not cond:
+                        logger.debug("Condition %s = %s violated. Skipping values" %(option,condStr))
+                        keepParser = False
+                        break
+                except:
+                    logger.debug("Error evaluating condition %s" %condStr)
+
+        if not keepParser: continue
+
         parserDict = newParser.toDict(raw=False) #Must convert to dictionary for pickling
-        print(parserDict)
+        logger.debug('\n'+str(parserDict)+'\n')
         p = pool.apply_async(runSoftSUSY, args=(parserDict,))
         children.append(p)
         # time.sleep(1)
 
+    print("Submitted %i jobs over %i cores" %(len(children),ncpus))
+    # logger.info("Submitted %i jobs over %i cores" %(len(children),ncpus))
 
     #Wait for jobs to finish:
     output = [p.get() for p in children]
     for out in output:
-        print(out)
+        logger.debug(str(out))
 
 
 if __name__ == "__main__":

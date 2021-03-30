@@ -7,7 +7,7 @@
 
 from math import *
 import re, itertools, tempfile, random
-import numpy
+import numpy as np
 import logging
 logger = logging.getLogger("ufo2slha")
 
@@ -104,7 +104,6 @@ class ConfigParserExt(RawConfigParser):
                 else:
                     raise InterpolationDepthError(option, section, valueRaw)
 
-
         try:
             return eval(ret)
         except:
@@ -142,7 +141,7 @@ class ConfigParserExt(RawConfigParser):
                     varList = eval(loopStr)
                 except:
                     raise ParsingError("Could not evaluate loop %s" %loopStr)
-                if not isinstance(varList,(list,numpy.ndarray,tuple)):
+                if not isinstance(varList,(list,np.ndarray,tuple)):
                     raise ParsingError("Loop expression %s did not generate a list" %loopStr)
                 loopVars.append((section,option))
                 varValues.append(varList)

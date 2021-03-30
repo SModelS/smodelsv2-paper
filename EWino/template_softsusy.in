@@ -15,12 +15,12 @@ Block EXTPAR  # general MSSM input (! IF uncommented, values replace MINPAR ones
          1     2.00E+03   # M_1                 
          2     6.00E+02   # M_2                 
          3     1.0E+04   # M_3                 
-        11    -1E+02   # A_t                 
-        12    -1E+02   # A_b                 
-        13    -2.51737263E+02   # A_tau               
-        14    -6.77437438E+02   # A_u                 
-        15    -8.59633345E+02   # A_d                 
-        16    -2.53493493E+02   # A_e                 
+        11     2E+03   # A_t                 
+        12     2E+03   # A_b                 
+        13     2E+03   # A_tau               
+        14     2E+03   # A_u                 
+        15     2E+03   # A_d                 
+        16     2E+03   # A_e                 
         23     1.0E+04   # mu(EWSB)            
         26     1.0E+04   # MA_pole                  
         25     1.00000000E+01   # tanbeta(MZ)         
