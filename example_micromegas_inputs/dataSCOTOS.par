@@ -1,0 +1,14 @@
+# file to improve default parameters
+emeta2  5000.
+lvarphi 0.
+lHvarphi 0.
+lPhivarphi 0.
+emN1 4000
+emN2 4000
+etheta 0.
+delta1   -4500
+deltaA  -4490.
+lPhi 0.01
+lHPhi1 0.0661121164124849
+lHPhi2 0.10048777743674102
+

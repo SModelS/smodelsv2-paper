@@ -1,0 +1,26 @@
+ScotoSinglet_real
+ Particles
+ Full  name  |A          |A+         | number |2*spin| mass          |width          |color|aux|>LaTex(A)<|>LaTeX(A+)   <|
+Electron-neut|ne         |Ne         |12      |1     |Mnue           |0              |1    |0  |ne        |Ne            |
+Mu-neutrino  |nm         |Nm         |14      |1     |Mnum           |0              |1    |0  |nm        |Nm            |
+Tau-neutrino |nl         |Nl         |16      |1     |Mnut           |0              |1    |0  |nl        |Nl            |
+Electron     |e          |E          |11      |1     |Me             |0              |1    |-3 |e         |E             |
+Muon         |m          |M          |13      |1     |MM             |0              |1    |-3 |m         |M             |
+Tau          |l          |L          |15      |1     |MTA            |0              |1    |-3 |l         |L             |
+u-quark      |u          |U          |2       |1     |MU             |0              |3    |2  |u         |U             |
+c-quark      |c          |C          |4       |1     |MC             |0              |3    |2  |c         |C             |
+t-quark      |t          |T          |6       |1     |MT             |!WT            |3    |2  |t         |T             |
+d-quark      |d          |D          |1       |1     |MD             |0              |3    |-1 |d         |D             |
+s-quark      |s          |S          |3       |1     |MS             |0              |3    |-1 |s         |S             |
+b-quark      |b          |B          |5       |1     |MB             |0              |3    |-1 |b         |B             |
+A            |a          |a          |22      |2     |0              |0              |1    |G  |a         |a             |
+Z            |Z          |Z          |23      |2     |MZ             |!WZ            |1    |0  |Z         |Z             |
+W            |W+         |W-         |24      |2     |MW             |!WW            |1    |3  |W+        |W-            |
+G            |g          |g          |21      |2     |0              |0              |8    |G  |g         |g             |
+N1           |~N1        |~N1        |9000006 |1     |mN1            |!WN1           |1    |0  |~N1       |~N1           |
+N2           |~N2        |~N2        |9000007 |1     |mN2            |!WN2           |1    |0  |~N2       |~N2           |
+h            |h          |h          |25      |0     |mH             |!WH            |1    |0  |h         |h             |
+phich        |~phi+      |~phi-      |9000008 |0     |mphich         |!Wphich        |1    |3  |~phi+     |~phi-         |
+phiI         |~phiI      |~phiI      |9000009 |0     |mphiI          |!WphiI         |1    |0  |~phiI     |~phiI         |
+eta1         |~eta1      |~eta1      |9000010 |0     |meta1          |!Weta1         |1    |0  |~eta1     |~eta1         |
+eta2         |~eta2      |~eta2      |9000011 |0     |meta2          |!Weta2         |1    |0  |~eta2     |~eta2         |
