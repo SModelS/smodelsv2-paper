@@ -1,0 +1,16 @@
+MHX    500.0          
+MH3    510.0         
+MHC    502.         
+laL    1e-10         
+la2    0.01         
+### Setting SM params to ScotoS ####
+Mtp    175.0 # 173.07
+Mh     125.  # 200
+McMc   1.2     # 1.27   
+Mu      0.0   #  0.01
+Md     0.0   #. 0.01
+Ms    0.1  # 0.2
+ 
+# In ScotoS MW is the free variable, instead of sinW. I leave default params.
+# In ScotoS, GG is calculated from.. (I don't know form where)
+# 

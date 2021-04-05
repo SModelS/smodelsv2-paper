@@ -1,0 +1,58 @@
+ScotoSinglet_real
+ Parameters
+  Name         | Value       |> Comment                                                                <|
+aEWM1          |0.00775795190|EW coupling constant at the Z pole                                        |
+Gf             |0.0000116637 |Fermi constant                                                            |
+MMZ            |91.1876      |Z pole mass                                                               |
+MMW            |79.947       |W pole mass                                                               |
+MMC            |1.2          |c mass at mc, MSbar                                                       |
+MMB            |4.23         |b mass at mb, MSbar                                                       |
+MMT            |175          |t pole mass                                                               |
+aS             |0.1172       |Strong coupling constant at the Z pole.                                   |
+QS             |100.         |QCD scale for running quark masses in CalcHEP                             |
+emH            |125.09       |Higgs boson mass                                                          |
+deltaA         |10.          |Difference between mA and meta2                                           |
+emN1           |135.         |N1 Majorana mass                                                          |
+emN2           |120.         |N2 Majorana mass                                                          |
+delta1         |20.          |difference between meta1 and meta2                                        |
+emeta2         |105.         |eta2 mass                                                                 |
+etheta         |0.7854       |phiR-varphi mixing [rad.]                                                 |
+lPhi           |0.0001       |Phi quartic self-coupling                                                 |
+lvarphi        |0.0002       |varphi quartic self-coupling                                              |
+lHPhi1         |0.0003       |H-Phi 1 coupling                                                          |
+lHPhi2         |0.0004       |H-Phi 2 coupling                                                          |
+lHvarphi       |0.0005       |H-varphi coupling                                                         |
+lPhivarphi     |0.0006       |Phi-varphi coupling                                                       |
+s12sq          |0.25         |sin^2 (theta_12)                                                          |
+s13sq          |0.25         |sin^2 (theta_13)                                                          |
+s23sq          |0.25         |sin^2 (theta_23)                                                          |
+alpha          |1.2          |Majorana phase [rad.]                                                     |
+deltaCP        |1.3          |Dirac phase [rad.]                                                        |
+zeta1          |1            |free parameter in R matrix                                                |
+zeta2          |1            |free parameter in R matrix                                                |
+sign           |1            |plus or minus in yukawas                                                  |
+Dm21sq         |7.1e-23      |difference in squared masses of nu2 and nu1                               |
+Dm3lsq         |2.5e-21      |difference in squared masses of nu3 and nul (l=1 for NO and l=2 for IO)   |
+NOorIO         |1            |1 for NO and 0 for IO                                                     |
+GG             |1.21358091448|Strong coupling constant   This value will be ignored and calculated from |
+Mnue           |0.           |Mass of ve.                                                               |
+Mnum           |0.           |Mass of vm.                                                               |
+Mnut           |0.           |Mass of vt.                                                               |
+Me             |0.           |Mass of e.                                                                |
+MM             |0.1057       |Mass of m.                                                                |
+MTA            |1.777        |Mass of ta.                                                               |
+MU             |0.           |Mass of u.                                                                |
+MD             |0.           |Mass of d.                                                                |
+MS             |0.1          |Mass of s.                                                                |
+%WT            |2.           |Width of t.                                                               |
+%WZ            |2.4952       |Width of Z.                                                               |
+%WW            |2.085        |Width of W.                                                               |
+%WN1           |0.           |Width of N1.                                                              |
+%WN2           |0.           |Width of N2.                                                              |
+%WH            |1.           |Width of h.                                                               |
+%Wphich        |1.           |Width of phich.                                                           |
+%WphiI         |1.           |Width of phiI.                                                            |
+%Weta1         |0.           |Width of eta1.                                                            |
+%Weta2         |0.           |Width of eta2.                                                            |
+E              |2.71828182845|The base of the natural logarithm.                                        |
+Pi             |3.14159265358|The circumference of a circle divided by the diameter.                    |
