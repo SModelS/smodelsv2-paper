@@ -38,3 +38,15 @@ if echo "$answer" | grep -iq "^y" ;then
     echo "[installer] Set the appropriate Fortran compiler in SPheno/Makefile and run make"
 fi
 
+echo -n "Install MicroMegas (y/n)?"
+read answer
+spheno="SPheno-4.0.4.tar.gz"
+if echo "$answer" | grep -iq "^y" ;then
+	URL=https://spheno.hepforge.org/downloads/$spheno
+	mkdir SPheno;
+	echo "[installer] fetching" $spheno; wget $URL 2>/dev/null || curl -O $URL; tar -zxf $spheno -C SPheno --strip-components 1;
+	cd $homeDIR
+    rm $spheno
+    echo "[installer] Set the appropriate Fortran compiler in SPheno/Makefile and run make"
+fi
+
