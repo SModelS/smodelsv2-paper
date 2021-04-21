@@ -15,7 +15,7 @@ fi
 
 echo -n "Install SoftSUSY (y/n)?"
 read answer
-softsusy="softsusy-4.1.10.tar.gz"
+softsusy="softsusy-4.1.11.tar.gz"
 if echo "$answer" | grep -iq "^y" ;then
 	URL=http://www.hepforge.org/archive/softsusy/$softsusy
 	mkdir softsusy;
