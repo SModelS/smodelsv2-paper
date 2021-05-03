@@ -1,0 +1,17 @@
+
+Sabine, 3/05/2021
+
+- idm_randscan.c : random scan program for IDM (with decays into pions) in micromegas 5.2.7a
+  various ways of scanning over mH0, mHc-mH0, mA, lam2; lam2=0.01 (fixed)
+  uses Rand.c for Uniform (flat) and Normal (Gaussian) distributions of random variables
+  constraints: all lambdas < 4pi; 
+               chi2(S,T)<5.99, corresponding to 95% CL for two d.o.f.
+               Omega < Omega_Planck + 10% theory uncertainty  
+               rescaled pval from DM direct detection experiments < 0.1 (90% CL)
+
+- for interfact to SModelS v2.0.0 replace 
+    micromegas_5.2.7.a/include/SMODELS.inc 
+    micromegas_5.2.7.a/Packages/SMODELS.makef
+    micromegas_5.2.7.a/sources/smodels.c
+
+
