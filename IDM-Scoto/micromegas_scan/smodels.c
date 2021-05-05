@@ -77,8 +77,8 @@ int smodels(int Run, int nf,double csMinFb,  char*fileName, char*version, int wr
         }
         else  
         {  
-          if(ModelPrtcls[i].name[0]=='~') fprintf(f,"11   1 # Z2-like parity (0=even,1=odd)\n\n"); 
-          else                            fprintf(f,"11   0 # Z2-like parity (0=even,1=odd)\n\n"); 
+          if(ModelPrtcls[i].name[0]=='~') fprintf(f,"11  1 # Z2-like parity (0=even,1=odd)\n\n"); 
+          else                            fprintf(f,"11  0 # Z2-like parity (0=even,1=odd)\n\n"); 
         }
 
       } 
