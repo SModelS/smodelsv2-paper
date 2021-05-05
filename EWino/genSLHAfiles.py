@@ -55,7 +55,7 @@ def getSoftSusyInput(parser):
 
     return cardFile
 
-def runSoftSUSY(parserDict):
+def runSoftSUSY(parserDict,n=1):
     """
     Run SoftSUSY using the parameters given in parser.
 
@@ -100,9 +100,20 @@ def runSoftSUSY(parserDict):
     logger.debug('SoftSUSY error:\n %s \n' %errorMsg)
     logger.debug('SoftSUSY output:\n %s \n' %output)
 
+    #Check if file has been created properly, if not, try again:
+    with open(outputFile,'r') as f:
+        dslha = f.read()
+        if (not 'DECAY' in dslha) or (not 'MASS' in dslha) or ('nan' in dslha):
+            if n < 5:
+                return runSoftSUSY(parserDict,n=n+1)
+            else:
+                logger.error("Failed running softSUSY for cardFile %s after %i attempts" %(CardFile,n))
+                return "Error running SoftSUSY at %s" %(now.strftime("%Y-%m-%d %H:%M"))
+
     #Remove input file
     if parser.has_option('options','cleanUp') and parser.get('options','cleanUp') is True:
         os.remove(cardFile)
+
 
     #Compute xsecs
     if parser.has_option('options','computeXsecs') and parser.get('options','computeXsecs') is True:
