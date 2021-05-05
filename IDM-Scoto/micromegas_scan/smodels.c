@@ -69,15 +69,16 @@ int smodels(int Run, int nf,double csMinFb,  char*fileName, char*version, int wr
              ModelPrtcls[i].spin2+1, 
              ModelPrtcls[i].cdim, 
              strcmp(ModelPrtcls[i].name,ModelPrtcls[i].aname)? 1:0   );
-        if(strcmp(version,"2.0.0-beta")==0 || strcmp(version,"2.0.0")==0)
+        //if(strcmp(version,"2.0.0-beta")==0 || strcmp(version,"2.0.0")==0)
+        if(strcmp(version,"2.0.0-beta")==0)
         {  
           if(ModelPrtcls[i].name[0]=='~') fprintf(f," 5  -1 # Z2parity (1=even,-1=odd)\n\n"); 
           else                            fprintf(f," 5   1 # Z2parity (1=even,-1=odd)\n\n"); 
         }
-        else
+        else  
         {  
-          if(ModelPrtcls[i].name[0]=='~') fprintf(f,"11  -1 # Z2parity (1=even,-1=odd)\n\n"); 
-          else                            fprintf(f,"11   1 # Z2parity (1=even,-1=odd)\n\n"); 
+          if(ModelPrtcls[i].name[0]=='~') fprintf(f,"11   1 # Z2-like parity (0=even,1=odd)\n\n"); 
+          else                            fprintf(f,"11   0 # Z2-like parity (0=even,1=odd)\n\n"); 
         }
 
       } 
