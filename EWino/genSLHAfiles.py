@@ -55,7 +55,7 @@ def getSoftSusyInput(parser):
 
     return cardFile
 
-def runSoftSUSY(parserDict,n=1):
+def runSoftSUSY(parserDict):
     """
     Run SoftSUSY using the parameters given in parser.
 
@@ -93,27 +93,36 @@ def runSoftSUSY(parserDict,n=1):
         logger.error("SoftSUSY folder %s not found" %softsusyFolder)
         return False
 
-    logger.debug('Running: %s/softpoint.x leshouches < %s' %(softsusyFolder,cardFile))
-    run = subprocess.Popen(' %s/softpoint.x leshouches < %s > %s' %(softsusyFolder,cardFile,outputFile)
-                       ,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-    output,errorMsg= run.communicate()
-    logger.debug('SoftSUSY error:\n %s \n' %errorMsg)
-    logger.debug('SoftSUSY output:\n %s \n' %output)
 
-    #Check if file has been created properly, if not, try again:
-    with open(outputFile,'r') as f:
-        dslha = f.read()
-        if (not 'DECAY' in dslha) or (not 'MASS' in dslha) or ('nan' in dslha):
-            if n < 5:
-                return runSoftSUSY(parserDict,n=n+1)
-            else:
-                logger.error("Failed running softSUSY for cardFile %s after %i attempts" %(CardFile,n))
-                return "Error running SoftSUSY at %s" %(now.strftime("%Y-%m-%d %H:%M"))
+    doRun = True
+    n = 0
+    #Try re-running if the first attempt fails:
+    while (n < 5 and doRun):
+        logger.debug('Running: %s/softpoint.x leshouches < %s' %(softsusyFolder,cardFile))
+        run = subprocess.Popen(' %s/softpoint.x leshouches < %s > %s' %(softsusyFolder,cardFile,outputFile)
+                           ,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        output,errorMsg= run.communicate()
+        logger.debug('SoftSUSY error:\n %s \n' %errorMsg)
+        logger.debug('SoftSUSY output:\n %s \n' %output)
+
+        doRun = False
+        #If file was not created, try again
+        if not os.path.isfile(outputFile):
+            doRun = True
+        else:
+            #Check if file has been created properly, if not, try again:
+            with open(outputFile,'r') as f:
+                dslha = f.read()
+                if (not 'DECAY' in dslha) or (not 'MASS' in dslha) or ('nan' in dslha):
+                    doRun = True
+
+    if doRun: #If the loop ended, but still needs to run, it means all attempts failed
+        logger.error("Failed running softSUSY for cardFile %s after %i attempts" %(CardFile,n))
+        return "Error running SoftSUSY at %s" %(now.strftime("%Y-%m-%d %H:%M"))
 
     #Remove input file
     if parser.has_option('options','cleanUp') and parser.get('options','cleanUp') is True:
         os.remove(cardFile)
-
 
     #Compute xsecs
     if parser.has_option('options','computeXsecs') and parser.get('options','computeXsecs') is True:
