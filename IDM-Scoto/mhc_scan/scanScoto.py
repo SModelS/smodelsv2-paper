@@ -81,8 +81,8 @@ for m in range(100, 1001, 300):
     mhc = m
     pars = [mh0, ma0, mhc, la2, laL]
     out = "scoto_mhc_" + str(mhc) + "_dm_" + str(dm) + "_la2_" + str(la2) + "_laL_" + str(laL)
-    outPar = os.path.join(PAR, out+".par")
-    outSlha = os.path.join(SLHA, out+".slha")
+    outPar = os.path.join(PAR, out+"_.par")
+    outSlha = os.path.join(SLHA, out+"_.slha")
     writePar(outPar, pars)
     os.system("./main " + outPar)
     os.system("cp smodels.slha " + outSlha)
