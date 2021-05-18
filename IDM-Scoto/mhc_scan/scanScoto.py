@@ -13,7 +13,7 @@ Modified on Thu Apr 01 2021
 import numpy as np
 import sys
 import os
-
+import shutil
 
 
 
@@ -55,8 +55,8 @@ def writePar(parName, pars):
         out.write('lvarphi    0.\n')
         out.write('lHvarphi   0.\n')
         out.write('lPhivarphi 0.\n')
-        out.write('emN1       1\n')
-        out.write('emN2       100000\n')
+        out.write('emN1       10000.\n')
+        out.write('emN2       10000.\n')
         out.write('etheta     0.\n')
 
 
@@ -65,25 +65,24 @@ laL=0.01
 #laL=1e-10
 
 #meta2,lPhi,delta1,deltaA,lHPhi1,lHPhi2=translate(mh0,ma0,mhc,la2,laL)
-
+dm = 5
 scanFolder = "scoto_scan_mhc_dm_" + str(dm)
 if os.path.exists(scanFolder):
-    os.rmdir(scanFolder)
+    shutil.rmtree(scanFolder)
 os.makedirs(scanFolder)
 SLHA = os.path.join(scanFolder, "slha")
 os.makedirs(SLHA)
 PAR = os.path.join(scanFolder, "par")
 os.makedirs(PAR)
 
-dm = 5
 for m in range(100, 1001, 300):
-    mh0 = m
-    ma0 = m + 1E-3
-    mhc = m + dm
+    mh0 = m + dm
+    ma0 = m + dm + 1E-3
+    mhc = m
     pars = [mh0, ma0, mhc, la2, laL]
     out = "scoto_mhc_" + str(mhc) + "_dm_" + str(dm) + "_la2_" + str(la2) + "_laL_" + str(laL)
-    outPar = os.path.join(PAR, out)
-    outSlha = os.path.join(SLHA, out)
+    outPar = os.path.join(PAR, out+".par")
+    outSlha = os.path.join(SLHA, out+".slha")
     writePar(outPar, pars)
     os.system("./main " + outPar)
     os.system("cp smodels.slha " + outSlha)
