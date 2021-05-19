@@ -45,7 +45,7 @@ os.makedirs(PAR)
 
 for m in range(100, 1001, 300):
     mh0 = m + dm
-    ma0 = m + dm + 1E-3
+    ma0 = m + dm
     mhc = m
     out = "IDM_mhc_" + str(mhc) + "_dm_" + str(dm) + "_la2_" + str(la2) + "_laL_" + str(laL)
     outPar = os.path.join(PAR, out+"_.par")
