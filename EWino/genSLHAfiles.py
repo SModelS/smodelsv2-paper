@@ -13,6 +13,7 @@ import time,datetime
 import multiprocessing
 import tempfile
 import pyslha
+import numpy as np
 
 FORMAT = '%(levelname)s in %(module)s.%(funcName)s() in %(lineno)s: %(message)s at %(asctime)s'
 logging.basicConfig(format=FORMAT,datefmt='%m/%d/%Y %I:%M:%S %p')
@@ -115,9 +116,13 @@ def runSoftSUSY(parserDict):
                 dslha = f.read()
                 if (not 'DECAY' in dslha) or (not 'MASS' in dslha) or ('nan' in dslha):
                     doRun = True
+        n += 1
 
     if doRun: #If the loop ended, but still needs to run, it means all attempts failed
-        logger.error("Failed running softSUSY for cardFile %s after %i attempts" %(CardFile,n))
+        logger.error("Failed running softSUSY for cardFile %s after %i attempts" %(cardFile,n))
+        if os.path.isfile(outputFile):
+            os.remove(outputFile) #Make sure to remove buggy files
+        now = datetime.datetime.now()
         return "Error running SoftSUSY at %s" %(now.strftime("%Y-%m-%d %H:%M"))
 
     #Remove input file
@@ -144,7 +149,6 @@ def runSoftSUSY(parserDict):
 
     logger.debug("Done in %3.2f min" %((time.time()-t0)/60.))
     now = datetime.datetime.now()
-
     return "Finished running SoftSUSY at %s" %(now.strftime("%Y-%m-%d %H:%M"))
 
 def main(parfile,verbose):
@@ -169,7 +173,20 @@ def main(parfile,verbose):
         logger.error( "No such file or directory: '%s'" % parfile)
         sys.exit()
 
-    parserList = parser.expandLoops()
+
+    #Hack to deal with random scan
+    if parser.has_option("options","random") and parser.get("options","random"):
+        parserList = []
+        npts = parser.get("options","nrandom")
+        while len(parserList) < npts:
+            newParser = ConfigParserExt()
+            newParser.read_dict(parser.toDict(raw=True))
+            #Replace parameter by iparser entry in list
+            for vlabel in parser.options("auxpar"):
+                newParser.set("auxpar",vlabel,str(parser.get("auxpar",vlabel)))
+            parserList.append(newParser)
+    else:
+        parserList = parser.expandLoops()
 
     ncpus = int(parser.get("options","ncpu"))
     if ncpus  < 0:
