@@ -187,6 +187,9 @@ int smodels(int Run, int nf,double csMinFb,  char*fileName, char*version, int wr
       if(j==16) slhaDecayPrint(ModelPrtcls[i].name,0,f);
    }
 
+   //adding ~N1 mass
+   fprintf(f,"DECAY 9000006 0.000000E+00 # ~N1\n\n");
+
    printf("computing LHC cross sections ... \n");
 
    for(i=0;i<np;i++) for(j=i;j<np;j++) if(pMass(plist[i])+pMass(plist[j])<PcmMax)
