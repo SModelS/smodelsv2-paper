@@ -12,8 +12,10 @@ For plotting the results using the DataFrame pickle file, see [results/plotIDMRe
 The data tarball (SLHA files and SModelS output) is stored at CERNBox and can be fetched through [this link](https://cernbox.cern.ch/index.php/s/nLBoOZzXGz6UvCu/) or running:
 
 ``
-wget https://cernbox.cern.ch/index.php/s/nLBoOZzXGz6UvCu/download -O data.tar.gz
+wget https://cernbox.cern.ch/index.php/s/QcdSerL470HIyLS/download -O data.tar.gz
 ``
+
+
 
 ## Adding SModelS ##
 
