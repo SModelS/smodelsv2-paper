@@ -22,6 +22,16 @@ For plotting the results using the DataFrame pickle file, see [results/plotIDMRe
 
 Due to GitHub storage limitations the data (SLHA files and SModelS output) should be stored in CERNBox.
 
+### EWino random scan data ###
+
+``
+wget https://cernbox.cern.ch/index.php/s/7V4jYOk1Q2XzxY0/download -O slha_scanRandom.tar.gz
+``
+
+
+``
+wget https://cernbox.cern.ch/index.php/s/xf0jIxeiNfkbsrN/download -O smodels_scanRandom.tar.gz
+``
 
 
 
