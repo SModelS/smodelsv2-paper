@@ -79,7 +79,7 @@ def main(parfile,verbose):
     pool = multiprocessing.Pool(processes=ncpus)
     children = []
     #Loop over parsers and submit jobs
-    for newParser in parserList[:10]:
+    for newParser in parserList:
         parserDict = newParser.toDict(raw=False) #Must convert to dictionary for pickling
         logger.debug('\n'+str(parserDict)+'\n')
         p = pool.apply_async(computeXsecs, args=(parserDict,))
