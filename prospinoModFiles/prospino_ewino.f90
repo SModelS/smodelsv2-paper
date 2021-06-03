@@ -7,9 +7,9 @@ program main
   real(kind=double)                    :: energy_in
   logical                              :: lfinal
   character(len=2)                     :: final_state_in
-  integer, dimension (5)               :: i1 = [1, 2, 3, 31, 71]
+  integer, dimension (4)               :: i1 = [1, 2, 5, 7]
   character(len=100)                   :: filename,energystr
-  integer                              :: isqrts
+  integer                              :: icount,jcount
 
 
 !----------------------------------------------------------------------------
@@ -61,11 +61,14 @@ isquark2_in = 0
 
   call MYPROSPINO_OPEN_CLOSE(0,filename)                                                            ! open all input/output files
 
-  do ipart1_in = 1,2,1
-    do ipart2_in = 5,7,2
-      if (ipart1 > ipart2) then
+  do icount = 1,4,1
+    do jcount = 1,4,1
+      if (icount > jcount) then
          continue
       end if
+
+      ipart1_in = i1(icount)
+      ipart2_in = i1(jcount)
 
       call PROSPINO_CHECK_HIGGS(final_state_in)                                              ! lock Higgs final states
       call PROSPINO_CHECK_FS(final_state_in,ipart1_in,ipart2_in,lfinal)                      ! check final state

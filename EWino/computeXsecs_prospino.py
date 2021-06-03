@@ -112,6 +112,7 @@ def computeProspinoXsecs(parserDict):
             continue
 
         prospino2SLHA(f1,file,sqrts)
+        os.remove(f1)
 
     logger.debug("Done in %3.2f min" %((time.time()-t0)/60.))
     now = datetime.datetime.now()
