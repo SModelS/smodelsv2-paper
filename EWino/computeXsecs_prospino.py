@@ -67,7 +67,7 @@ def prospino2SLHA(prospino_out,slhafile,sqrts):
         xsecNLO_pb = eval(vals[11])
         pdgs = getPDGsFrom(process,id1,id2)
         block = '\nXSECTION  %1.2e  2212 2212 2 %i %i # [pb], Prospino for NLO\n' %(sqrts,pdgs[0],pdgs[1])
-        block += '0  1  0  0  0  0    %1.5e \n' %(xsecNLO_pb)
+        block += '  0  1  0  0  0  0    %1.5e \n' %(xsecNLO_pb)
         f.write(block)
 
     f.close()
