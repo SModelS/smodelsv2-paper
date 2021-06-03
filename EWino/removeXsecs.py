@@ -33,9 +33,5 @@ for f in glob.glob(os.path.join(infolder,'*.slha')):
         data = ff.read()
         data = data[:data.find('XSECTION')]
     fnew = os.path.join(outfolder,os.path.basename(f))
-    print(fnew)
     with open(fnew,'w') as ff:
         ff.write(data+'\n')
-
-    print(fnew)
-    break
