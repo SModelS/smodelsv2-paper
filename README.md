@@ -10,6 +10,8 @@ The script installer.sh will try to fetch and install the following packages:
   * [SoftSUSY](https://softsusy.hepforge.org/)  
   * [Prospino](https://www.thphys.uni-heidelberg.de/~plehn/index.php?show=prospino)  
 
+The Prospino installation includes small [changes to the Prospino code](prospinoModFiles) in order to make it easier to run the code in parallel.
+
 
 ## Running the scans
 
