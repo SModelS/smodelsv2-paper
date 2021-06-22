@@ -9,6 +9,7 @@ from math import *
 import re, itertools, tempfile, random
 import numpy as np
 import logging
+import glob
 logger = logging.getLogger("ufo2slha")
 
 try:
