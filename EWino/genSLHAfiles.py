@@ -123,6 +123,9 @@ def runSoftSUSY(parserDict):
         if os.path.isfile(outputFile):
             os.remove(outputFile) #Make sure to remove buggy files
         now = datetime.datetime.now()
+        if parser.has_option('options','cleanUp') and parser.get('options','cleanUp') is True:
+                os.remove(cardFile)
+        
         return "Error running SoftSUSY at %s" %(now.strftime("%Y-%m-%d %H:%M"))
 
     #Remove input file
