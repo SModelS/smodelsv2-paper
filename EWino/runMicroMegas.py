@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Simple code for running SModelS xseccomputer over a set of input files."""
+"""Simple code for running Micromegas over a set of input SLHA files."""
 
 #First tell the system where to find the modules:
 import sys,os,glob,shutil
@@ -18,35 +18,53 @@ logging.basicConfig(format=FORMAT,datefmt='%m/%d/%Y %I:%M:%S %p')
 logger = logging.getLogger(__name__)
 
 
-def computeXsecs(parserDict):
+def runMicroMegas(parserDict):
+    """
+    Run Micromegas over a single File
+
+    :param parserDict: Dictionary containing the parser.
+    """
+
 
     t0 = time.time()
     parser = ConfigParserExt()
     parser.read_dict(parserDict)
 
-
-    file = os.path.abspath(parser.get("options","file"))
-    xsecflags  = parser.get("options","xsecflags")
-
-    if not parser.has_option('options','smodelsFolder'):
-        logger.error("smodelsFolder not defined")
+    if not parser.has_option('options','micromegasExec'):
+        logger.error("micromegas executable not defined")
         return False
 
-    nevents = int(parser.get('options','nevents'))
-    smodelsFolder = os.path.abspath(parser.get('options','smodelsFolder'))
-    if not os.path.isdir(smodelsFolder):
-        logger.error("Could not found SModelS folder %s" %smodelsFolder)
-    else:
-        logger.debug("Running ./smodelsTools.py xseccomputer -f %s -e %i -p %s" %(file,nevents,xsecflags))
-        run = subprocess.Popen('./smodelsTools.py xseccomputer -f %s -e %i -p %s' %(file,nevents,xsecflags)
-                   ,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=smodelsFolder)
-        output,errorMsg= run.communicate()
-        logger.debug('smodelsTools error:\n %s \n' %errorMsg)
-        logger.debug('smodelsTools output:\n %s \n' %output)
+    microExe = os.path.abspath(parser.get('options','micromegasExec'))
+    if not os.path.isfile(microExe):
+        logger.error("Could not found Micromegas executable %s" %microExe)
+        return False
+
+    inputFile = os.path.abspath(parser.get("options","inputFile"))
+    outputFile = parser.get("options","outputFile")
+    outputFolder = os.path.abspath(parser.get("options","outputFolder"))
+    #Create output dirs, if do not exist:
+    try:
+        os.makedirs(outputFolder)
+    except:
+        pass
+    #Define absolute path to output file
+    if not outputFile:
+        outputFile = os.path.basename(inputFile).replace('.slha','')+'.micro'
+    outputFile = os.path.join(outputFolder,os.path.basename(outputFile))
+    outputFile = os.path.abspath(outputFile)
+
+    microFolder = os.path.dirname(microExe)
+    microExe = os.path.basename(microExe)
+
+    logger.debug("Running ./%s %s" %(microExe,inputFile))
+    run = subprocess.Popen('./%s %s > %s' %(microExe,inputFile,outputFile)
+                   ,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=microFolder)
+    output,errorMsg= run.communicate()
+    logger.debug('Micromegas error:\n %s \n' %errorMsg)
 
     logger.debug("Done in %3.2f min" %((time.time()-t0)/60.))
     now = datetime.datetime.now()
-    return "Finished running xseccomputer at %s" %(now.strftime("%Y-%m-%d %H:%M"))
+    return "Finished running Micromegas at %s" %(now.strftime("%Y-%m-%d %H:%M"))
 
 def main(parfile,verbose):
     """
@@ -82,7 +100,7 @@ def main(parfile,verbose):
     for newParser in parserList:
         parserDict = newParser.toDict(raw=False) #Must convert to dictionary for pickling
         logger.debug('\n'+str(parserDict)+'\n')
-        p = pool.apply_async(computeXsecs, args=(parserDict,))
+        p = pool.apply_async(runMicroMegas, args=(parserDict,))
         children.append(p)
         # time.sleep(1)
 
@@ -99,9 +117,9 @@ if __name__ == "__main__":
 
     import argparse
     ap = argparse.ArgumentParser( description=
-            "Run SModelS xseccomputer over a set of files to compute cross-sections and add them to the input SLHA files." )
-    ap.add_argument('-p', '--parfile', default='computeXsecs_pars.ini',
-            help='path to the parameters file. Default is computeXsecs_pars.ini')
+            "Run Micromegas over a set of files to compute relic density and other observables." )
+    ap.add_argument('-p', '--parfile', default='micromegas_pars.ini',
+            help='path to the parameters file. Default is micromegas_pars.ini')
     ap.add_argument('-v', '--verbose', default='info',
             help='verbose level (debug, info, warning or error). Default is error')
 
