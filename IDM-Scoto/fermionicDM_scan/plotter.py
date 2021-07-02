@@ -2,9 +2,9 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.spatial import ConvexHull, convex_hull_plot_2d
-
-
-
+import alphashape
+from matplotlib.patches import Patch
+from descartes import PolygonPatch
 
 
 def openframe(path_to_frame):
@@ -174,8 +174,8 @@ def plotCurvesTopo(frame,title,path_to_plot):
    
     
     ####Displaced lepton
-    frame_analysis=frame_excluded.loc[frame_excluded['Tx']=='TSelSelDisp']
-    frame_analysis2d=frame_analysis[['m(N1)','m(H+)']]
+    frame_displaced=frame.loc[frame['Disp']>1]
+    frame_analysis2d=frame_displaced[['m(N1)','m(H+)']]
     frame_analysis2d=frame_analysis2d.to_numpy()
     hull = ConvexHull(frame_analysis2d,qhull_options='QG4')
     k=0
@@ -190,8 +190,8 @@ def plotCurvesTopo(frame,title,path_to_plot):
        
     plt.xscale('log')
         
-    
-    frame_analysis=frame_excluded.loc[frame_excluded['Tx']!='TSelSelDisp']
+    ##HSCP
+    frame_analysis=frame_excluded.loc[frame_excluded['Tx']!='TSmuSmuDisp']
     frame_analysis2d=frame_analysis[['m(N1)','m(H+)']]
     frame_analysis2d=frame_analysis2d.to_numpy()
     hull = ConvexHull(frame_analysis2d,qhull_options='QG4')
@@ -221,20 +221,70 @@ def plotCurvesTopo(frame,title,path_to_plot):
         
     
 
+def plotCurvesTopo2(frame,frameHSCP,title,path_to_plot):
+
+
+    fig, ax = plt.subplots()
+    #ax.scatter(frame['m(N1)'],frame['m(H+)'],c=frame['r_max'],alpha=1,cmap='jet',vmax=1.2,vmin=.1)
+    #ax.set_xscale('log')
+   # plt.colorbar()
     
+    ax.set_xlim(left=min(frame['m(H+)']),right=max(frame['m(H+)']))
+    ax.set_ylim(bottom=min(frame['m(N1)']),top=max(frame['m(N1)']))
+    
+    plt.scatter(frame['m(H+)'],frame['m(N1)'],c=frame['r_max'],alpha=1,cmap='jet',vmax=1.2,vmin=.1)
+    plt.colorbar(label='$r_{max}$')
+    
+    frame_displaced=frameHSCP.loc[frameHSCP['Disp']>1]
+    frame_analysis2d=frame_displaced[['m(H+)','m(N1)']]
+    frame_analysis2d=frame_analysis2d.to_numpy()
+    print(frame_analysis2d)
+    alpha_shape = alphashape.alphashape(frame_analysis2d, .05)
+    print(alpha_shape)
+    ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='pink',fill=False,zorder=20,lw=2,label='Displaced lepton'))
+    
+    
+    
+    frame_excluded=frameHSCP.loc[frameHSCP['SModelS_status']=='Excluded']
+    frame_analysis=frame_excluded.loc[frame_excluded['Tx']!='TSmuSmuDisp']
+    frame_analysis2d=frame_analysis[['m(H+)','m(N1)']]
+    frame_analysis2d=frame_analysis2d.to_numpy()
+    print(frame_analysis2d)
+    alpha_shape = alphashape.alphashape(frame_analysis2d, .05)
+    print(alpha_shape)
+    ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='white',fill=False,lw=2,label='HSCP'))
+    plt.legend(loc='upper left',framealpha=.6,labelcolor='black')
+    #print(alpha_shape)
+   # Patch(alpha_shape,'.',c='yellow')
+    plt.yscale('log')
+    plt.ylabel('$ m_{N_{1}}$ (GeV)',fontsize=12)
+    plt.xlabel('$ m_{H^{\\pm}}$ (GeV)',fontsize=12)
+    plt.title(title)
+    plt.savefig(path_to_plot)
+    plt.close()
+   
+    return
+ 
+    
+  
+    
+
    
 
 
     
-#path_to_frame='data_frames/frame_delta5_electrons.txt'
-path_to_frame='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_delta5_muons_txweight_THSCPM1b.txt'
-title='Fermionic DM, $\\Delta m=5$ GeV, $ H^\pm\\to \mu^\pm N_1$  '
+path_to_frame='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_delta5_muons_compression.txt'
+#path_to_frame='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_delta5_muons_compression.txt'
+path_to_onlyHSCPframe='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_delta5_muons_compression_onlyHSCP.txt'
+title='Fermionic DM, $\\Delta m=5$ GeV, $ H^\pm\\to \\mu^\pm N_1$  '
 
-path_to_plot='static_plots/plot_analysis_larger_delta5_electrons_s.png'
-path_to_plot_topo='static_plots/plot_topo_larger_delta5_muons_THSCP1b_r08.png'
-path_to_plot_curves='static_plots/plot_curves_delta5_electrons.png'
+path_to_plot='static_plots/plot_analysis_larger_delta5_electrons_compression.png'
+path_to_plot_topo='static_plots/plot_topo_larger_delta5_muons_compression.png'
+path_to_plot_curves='plots/plot_curves_intersections_delta5_muons.png'
 frame=openframe(path_to_frame)
+HSCPframe=openframe(path_to_onlyHSCPframe)
 #plotterAnalyses(frame,title,path_to_plot)
 #plotterTopo(frame,title,path_to_plot_topo)
 #plotCurvesTopo(frame,title,path_to_plot_curves)
-plotterTopoHSCPind(frame,title,path_to_plot_topo)
+plotCurvesTopo2(frame,HSCPframe,title,path_to_plot_curves)
+#plotterTopoHSCPind(frame,title,path_to_plot_topo)
