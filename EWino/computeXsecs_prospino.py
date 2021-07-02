@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Simple code for running SModelS xseccomputer over a set of input files."""
+"""Simple code for running Prospino over a set of input files."""
 
 #First tell the system where to find the modules:
 import sys,os,glob,shutil
@@ -169,9 +169,9 @@ if __name__ == "__main__":
 
     import argparse
     ap = argparse.ArgumentParser( description=
-            "Run SModelS xseccomputer over a set of files to compute cross-sections and add them to the input SLHA files." )
+            "Run Propsino over a set of files to compute cross-sections and add them to the input SLHA files." )
     ap.add_argument('-p', '--parfile', default='computeXsecs_prospino_pars.ini',
-            help='path to the parameters file. Default is checkmate_parameters.ini')
+            help='path to the parameters file. Default iscomputeXsecs_prospino_pars.ini')
     ap.add_argument('-v', '--verbose', default='info',
             help='verbose level (debug, info, warning or error). Default is error')
 

@@ -8,9 +8,11 @@ The script installer.sh will try to fetch and install the following packages:
 
   * [smodels](https://smodels.github.io/)
   * [SoftSUSY](https://softsusy.hepforge.org/)  
-  * [Prospino](https://www.thphys.uni-heidelberg.de/~plehn/index.php?show=prospino)  
+  * [Prospino](https://www.thphys.uni-heidelberg.de/~plehn/index.php?show=prospino)
+  * [Micromegas](https://lapth.cnrs.fr/micromegas/)    
 
 The Prospino installation includes small [changes to the Prospino code](prospinoModFiles) in order to make it easier to run the code in parallel.
+The required Micromegas files are stored in [micromegaFiles](micromegaFiles) and compiled during installation.
 
 
 ## Running the scans

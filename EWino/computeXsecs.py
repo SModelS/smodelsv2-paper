@@ -101,7 +101,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser( description=
             "Run SModelS xseccomputer over a set of files to compute cross-sections and add them to the input SLHA files." )
     ap.add_argument('-p', '--parfile', default='computeXsecs_pars.ini',
-            help='path to the parameters file. Default is checkmate_parameters.ini')
+            help='path to the parameters file. Default is computeXsecs_pars.ini')
     ap.add_argument('-v', '--verbose', default='info',
             help='verbose level (debug, info, warning or error). Default is error')
 

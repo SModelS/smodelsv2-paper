@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+usr/bin/env python3
 
 """Simple code for running SOFTSUSY over a set of input parameters."""
 
@@ -123,6 +123,9 @@ def runSoftSUSY(parserDict):
         if os.path.isfile(outputFile):
             os.remove(outputFile) #Make sure to remove buggy files
         now = datetime.datetime.now()
+        if parser.has_option('options','cleanUp') and parser.get('options','cleanUp') is True:
+                os.remove(cardFile)
+
         return "Error running SoftSUSY at %s" %(now.strftime("%Y-%m-%d %H:%M"))
 
     #Remove input file
@@ -232,7 +235,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser( description=
             "Run SoftSUSY over a set of input files to compute SLHA files." )
     ap.add_argument('-p', '--parfile', default='softsusy_pars.ini',
-            help='path to the parameters file. Default is checkmate_parameters.ini')
+            help='path to the parameters file. Default is softsusy_pars.ini')
     ap.add_argument('-v', '--verbose', default='info',
             help='verbose level (debug, info, warning or error). Default is error')
 
