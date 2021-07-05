@@ -270,17 +270,19 @@ int main(int argc,char** argv)
 { int fast=1;
   double Beps=1.E-5, cut=0.01;
   double Omega,Xf=25;
+  
+  if (atoi(argv[2]) == 0){
+      // to exclude processes with virtual W/Z in DM   annihilation
+      VZdecay=0; VWdecay=0; cleanDecayTable();
+      printf("\n==== Calculation of relic density (without virtual W/Z) =====\n");
+  } else{
+    // to include processes with virtual W/Z  also  in co-annihilation
+       VZdecay=2; VWdecay=2; cleanDecayTable();
+       printf("\n==== Calculation of relic density (with virtual W/Z) =====\n");
+   }
 
-// to exclude processes with virtual W/Z in DM   annihilation
-//    VZdecay=0; VWdecay=0; cleanDecayTable();
-
-// to include processes with virtual W/Z  also  in co-annihilation
-   VZdecay=2; VWdecay=2; cleanDecayTable();
-
-  printf("\n==== Calculation of relic density =====\n");
 
 //  sortOddParticles(cdmName);
-
    Omega=darkOmega(&Xf,fast,Beps,&err);
    printf("Xf=%.2e Omega=%.2e\n",Xf,Omega);
 
