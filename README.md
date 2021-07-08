@@ -38,18 +38,22 @@ For plotting the results using the DataFrame pickle file, see [results/plotEWino
 
 ## Data ##
 
-Due to GitHub storage limitations the data (SLHA files and SModelS output) should be stored in CERNBox.
+Due to GitHub storage limitations the data (SLHA files, SModelS and Micromegas output) should be stored in CERNBox.
 
 ### EWino random scan data ###
 
 ``
-wget https://cernbox.cern.ch/index.php/s/qVluyZzuSvJ9hLy/download -O slha_scanRandom_Prospino.tar.gz
+wget https://cernbox.cern.ch/index.php/s/HEtaIPUCgTzbbTh/download -O slha_scanRandom.tar.gz
 ``
 
 
 ``
-wget https://cernbox.cern.ch/index.php/s/HPzOKJtH0EB5UXS/download -O smodels_scanRandom_Prospino_210.tar.gz
+wget https://cernbox.cern.ch/index.php/s/QZc82K5PRBza78z/download -O smodels_scanRandom.tar.gz
 ``
 
+
+``
+wget https://cernbox.cern.ch/index.php/s/PxWryx4RPs4Kd3N/download -O micromegas_scanRandom.tar.gz
+``
 
 
