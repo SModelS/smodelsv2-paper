@@ -47,6 +47,13 @@ def runMicroMegas(parserDict):
         os.makedirs(outputFolder)
     except:
         pass
+
+    #Check flag for including virtual W/Z in the relic density calculation (slower)
+    doVirtualWZ = False
+    if parser.has_option('options','doVirtualWZ'):
+        doVirtualWZ = parser.get('options','doVirtualWZ')
+    doVirtualWZ = int(doVirtualWZ)
+
     #Define absolute path to output file
     if not outputFile:
         outputFile = os.path.basename(inputFile).replace('.slha','')+'.micro'
@@ -56,8 +63,8 @@ def runMicroMegas(parserDict):
     microFolder = os.path.dirname(microExe)
     microExe = os.path.basename(microExe)
 
-    logger.debug("Running ./%s %s" %(microExe,inputFile))
-    run = subprocess.Popen('./%s %s > %s' %(microExe,inputFile,outputFile)
+    logger.debug("Running ./%s %s %i" %(microExe,inputFile,doVirtualWZ))
+    run = subprocess.Popen('./%s %s %i > %s' %(microExe,inputFile,doVirtualWZ,outputFile)
                    ,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=microFolder)
     output,errorMsg= run.communicate()
     logger.debug('Micromegas error:\n %s \n' %errorMsg)
