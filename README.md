@@ -24,9 +24,9 @@ The main scripts generating the SLHA files using SoftSUSY and computing the cros
   * [EWino/genSLHAfiles.py](EWino/genSLHAfiles.py) : runs a scan to compute the SUSY spectrum using SoftSUSY and compute cross-sections using SModelS
   * [EWino/computeXsecs.py](EWino/computeXsecs.py) : compute cross-sections using SModelS for a set of SLHA files
   * [EWino/computeXsecs_prospino.py](EWino/computeXsecs_prospino.py) : compute cross-sections using Prospino for a set of SLHA files (only cross-sections for combinations of C1,N1 and N2 are included!)
-  
+
 The input of the above scripts are controlled by par (.ini) files stored in the [EWino](EWino) folder.    
-  
+
 The SModelS output is computed using the runSModelS.py script with this [parameter file](EWino/smodels_parameters.ini)
 
 ## Analysing Results and Plotting ##
@@ -43,17 +43,15 @@ Due to GitHub storage limitations the data (SLHA files, SModelS and Micromegas o
 ### EWino random scan data ###
 
 ``
-wget https://cernbox.cern.ch/index.php/s/HEtaIPUCgTzbbTh/download -O slha_scanRandom.tar.gz
+wget https://cernbox.cern.ch/index.php/s/tYWRXBDXSFn7AwO/download -O slha_scanRandom.tar.gz
 ``
 
 
 ``
-wget https://cernbox.cern.ch/index.php/s/QZc82K5PRBza78z/download -O smodels_scanRandom.tar.gz
+wget https://cernbox.cern.ch/index.php/s/Bnc6NFQ26rpBr1h/download -O smodels_scanRandom.tar.gz
 ``
 
 
 ``
-wget https://cernbox.cern.ch/index.php/s/PxWryx4RPs4Kd3N/download -O micromegas_scanRandom.tar.gz
+wget https://cernbox.cern.ch/index.php/s/pxWWf83EAD6vYmi/download -O micromegas_scanRandom.tar.gz
 ``
-
-
