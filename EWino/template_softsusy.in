@@ -58,6 +58,6 @@ Block SOFTSUSY               # Optional SOFTSUSY-specific parameters
    25   1.000000000e+00	     # If set to 0, don't calculate 3-body decays (1=default)
 #   27   1.000000000e+03      # Scale to match QEDxQCD to MSSM (default mt)   
    28   125.0                #Hard-code Higgs mass
-   29   5000.0              #Hard-code A0 mass
-   30   5000.0              #Hard-code H0 mass
-   31   5000.0              #Hard-code H+- mass
+   29   10000.0              #Hard-code A0 mass
+   30   10000.0              #Hard-code H0 mass
+   31   10000.0              #Hard-code H+- mass

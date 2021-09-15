@@ -6,7 +6,7 @@ homeDIR="$( pwd )"
 echo -n "Install SModelS (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
-	echo "[installer] cloning SModelS 2.0.0"; git subtree add --prefix=smodels --squash git@github.com:SModelS/smodels.git v2.0.0;
+	echo "[installer] cloning SModelS 2.1.0"; git subtree add --prefix=smodels --squash git@github.com:SModelS/smodels.git develop;
 	cd smodels;
 	make;
 	cd $homeDIR;

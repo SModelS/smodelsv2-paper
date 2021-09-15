@@ -1,4 +1,4 @@
-usr/bin/env python3
+#!/usr/bin/env python3
 
 """Simple code for running SOFTSUSY over a set of input parameters."""
 
