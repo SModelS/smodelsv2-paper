@@ -5,7 +5,11 @@ from scipy.spatial import ConvexHull, convex_hull_plot_2d
 import alphashape
 from matplotlib.patches import Patch
 from descartes import PolygonPatch
-
+plt.rcParams.update({
+"text.usetex":True,
+"font.family":"serif",
+"font.serif":["Computer Modern Roman"]
+                    })
 
 def openframe(path_to_frame):
 
@@ -159,7 +163,7 @@ def plotCurvesTopo(frame,title,path_to_plot):
     import numpy as np
 
     plt.scatter(frame['m(N1)'],frame['m(H+)'],c=frame['r_max'],alpha=1,cmap='jet',vmax=1.2,vmin=.1)
-    plt.colorbar(label='$r_{max}$')
+    plt.colorbar(label='$r_{max}$',fontsize=20)
     #clb.label('$$r_{max}$$')
     analysis_list=[]
     frame_excluded=frame.loc[frame['SModelS_status']=='Excluded']
@@ -210,8 +214,8 @@ def plotCurvesTopo(frame,title,path_to_plot):
         
         
     plt.legend()
-    plt.xlabel('$ m_{N_{1}}$ (GeV)',fontsize=12)
-    plt.ylabel('$ m_{H^{\\pm}}$ (GeV)',fontsize=12)
+    plt.xlabel('$ m_{N_{1}}$ (GeV)',fontsize=20)
+    plt.ylabel('$ m_{H^{\\pm}}$ (GeV)',fontsize=20)
     plt.title(title)
        
         
@@ -224,7 +228,7 @@ def plotCurvesTopo(frame,title,path_to_plot):
 def plotCurvesTopo2(frame,frameHSCP,title,path_to_plot):
     
     
-    #frame=frame.loc[frame['MASS37']<900]
+    frame=frame.loc[frame['MASS37']<900]
     fig, ax = plt.subplots()
     #ax.scatter(frame['m(N1)'],frame['m(H+)'],c=frame['r_max'],alpha=1,cmap='jet',vmax=1.2,vmin=.1)
     #ax.set_xscale('log')
@@ -234,17 +238,20 @@ def plotCurvesTopo2(frame,frameHSCP,title,path_to_plot):
     ax.set_ylim(bottom=min(frame['MASS9000006']),top=max(frame['MASS9000006']))
     
     plt.scatter(frame['MASS37'],frame['MASS9000006'],c=frame['r_max'],alpha=1,cmap='jet',vmax=1.2,vmin=.1,s=55)
-    plt.colorbar(label='$r_{max}$')
-    
-    frame_displaced=frameHSCP.loc[frameHSCP['Disp']>1]
+    cbar=plt.colorbar(label='$r_{max}$')
+   
+    cbar.set_label(label='$r_{max}$', size=20)
+    cbar.ax.tick_params(labelsize=15)
+    frame_displaced=frame.loc[frame['Disp']>1]
     frame_analysis2d=frame_displaced[['MASS37','MASS9000006']]
     frame_analysis2d=frame_analysis2d.to_numpy()
     print(frame_analysis2d)
-    alpha_shape = alphashape.alphashape(frame_analysis2d, .08)
+    alpha_shape = alphashape.alphashape(frame_analysis2d, .099)
     print(alpha_shape)
     ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='pink',fill=False,zorder=20,lw=2,label='Displaced lepton'))
     
-    
+    plt.subplots_adjust(bottom=.13)
+    plt.subplots_adjust(left=.13)
     
     frame_excluded=frameHSCP.loc[frameHSCP['r_max']>1]
     frame_analysis=frame_excluded.loc[frame_excluded['Tx']!='TSelSelDisp']
@@ -254,13 +261,15 @@ def plotCurvesTopo2(frame,frameHSCP,title,path_to_plot):
     alpha_shape = alphashape.alphashape(frame_analysis2d, .09)
     print(alpha_shape)
     ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='white',fill=False,lw=2,label='HSCP'))
-    plt.legend(loc='upper left',framealpha=.6,labelcolor='black')
+    plt.legend(loc='upper left',framealpha=.6,labelcolor='black',fontsize=15)
     #print(alpha_shape)
    # Patch(alpha_shape,'.',c='yellow')
     plt.yscale('log')
-    plt.ylabel('$ m_{N_{1}}$ (GeV)',fontsize=12)
-    plt.xlabel('$ m_{H^{\\pm}}$ (GeV)',fontsize=12)
-    plt.title(title)
+    plt.ylabel('$ m_{N_{1}}$ (GeV)',fontsize=19)
+    plt.xlabel('$ m_{H^{\\pm}}$ (GeV)',fontsize=19)
+    plt.xticks(fontsize=15)
+    plt.yticks(fontsize=15)
+    plt.title(title,fontsize=15)
     plt.savefig(path_to_plot)
     plt.close()
    
@@ -270,7 +279,7 @@ def plotCurvesTopo2(frame,frameHSCP,title,path_to_plot):
 def plotCurvesTopoCtau2(frame,frameHSCP,title,path_to_plot):
 
 
-    #frame=frame.loc[frame['MASS37']<900]
+    frame=frame.loc[frame['MASS37']<900]
     frame=frame.loc[frame['ctau(37)']<10e5]
     fig, ax = plt.subplots()
     
@@ -289,7 +298,7 @@ def plotCurvesTopoCtau2(frame,frameHSCP,title,path_to_plot):
     frame_analysis2d=frame_displaced[['MASS37','ctau(37)']]
     frame_analysis2d=frame_analysis2d.to_numpy()
     print(frame_analysis2d)
-    alpha_shape = alphashape.alphashape(frame_analysis2d, .05)
+    alpha_shape = alphashape.alphashape(frame_analysis2d, .099)
     print(alpha_shape)
     ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='pink',fill=False,zorder=20,lw=2,label='Displaced lepton'))
     
@@ -343,7 +352,7 @@ def comparing_compression(frame_comp,frame_nocomp,title,path_to_plot):
     frame_nocomp_excluded=frame_nocomp_excluded[['MASS37','MASS9000006']]
     frame_nocomp_excluded=frame_nocomp_excluded.to_numpy()
  
-    alpha_shape = alphashape.alphashape(frame_nocomp_excluded, .099)
+    alpha_shape = alphashape.alphashape(frame_nocomp_excluded, .1)
     print(alpha_shape)
     ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='pink',fill=False,zorder=20,lw=2,label='False'))
     
@@ -369,15 +378,15 @@ def comparing_compression(frame_comp,frame_nocomp,title,path_to_plot):
 
 
     
-path_to_frame='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_5_electrons_compression_3.txt'
+path_to_frame='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_50_muons_3.txt'
 #path_to_frame='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_delta5_muons_compression.txt'
-path_to_onlyHSCPframe='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_5_electrons_compression_onlyHSCP_3.txt'
-title='Fermionic DM, $\\Delta m=5$ GeV, $ H^\pm\\to e^\pm N_1$'
+path_to_onlyHSCPframe='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_50_muons_onlyHSCP_3.txt'
+title='Fermionic DM, $\\Delta m=50$ GeV, $ H^\pm\\to \\mu ^\pm  N_1$'
 
 #path_to_plot='static_plots/plot_analysis_larger_delta5_electrons_compression.png'
 #path_to_plot_topo='static_plots/plot_topo_larger_delta5_muons_compression.png'
-path_to_plot_ctau_curves='plots/plot_curves_ctau_delta5_electrons_compression_3.png'
-path_to_plot_curves='plots/plot_curves_delta5_electrons_compression_3.png'
+path_to_plot_ctau_curves='plots/plot_curves_ctau_delta50_muons_3_lim900.png'
+path_to_plot_curves='plots/plot_curves_delta50_muons_3_lim900.png'
 frame=openframe(path_to_frame)
 HSCPframe=openframe(path_to_onlyHSCPframe)
 #plotterAnalyses(frame,title,path_to_plot)
