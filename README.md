@@ -32,9 +32,9 @@ The SModelS output is computed using the runSModelS.py script with this [paramet
 ## Analysing Results and Plotting ##
 
 The SLHA input and SModelS output can be easily combined using Pandas DataFrames and stored
-as a pickle file, as shown in [results/getEWinoData.ipynb](results/getEWinoData.ipynb).
+as a pickle file, as shown in [EWino/results/getEWinoData.ipynb](EWino/results/getEWinoData.ipynb).
 
-For plotting the results using the DataFrame pickle file, see [results/plotEWinoResults-Prospino-210.ipynb](results/plotEWinoResults-Prospino-210.ipynb)
+For plotting the results using the DataFrame pickle file, see [EWino/results/plots-EWinoScan.ipynb](EWino/results/plots-EWinoScan.ipynb)
 
 ## Data ##
 
