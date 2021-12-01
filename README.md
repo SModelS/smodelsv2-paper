@@ -38,20 +38,24 @@ For plotting the results using the DataFrame pickle file, see [EWino/results/plo
 
 ## Data ##
 
-Due to GitHub storage limitations the data (SLHA files, SModelS and Micromegas output) should be stored in CERNBox.
+Due to GitHub storage limitations the data (SLHA files, SModelS and Micromegas output) are stored in CERNBox.
 
 ### EWino random scan data ###
 
-``
-wget https://cernbox.cern.ch/index.php/s/tYWRXBDXSFn7AwO/download -O slha_scanRandom.tar.gz
-``
-
+The data for the EW-ino scan can be download from CERNBox
+using:
 
 ``
-wget https://cernbox.cern.ch/index.php/s/Bnc6NFQ26rpBr1h/download -O smodels_scanRandom.tar.gz
+wget https://cernbox.cern.ch/index.php/s/QUNh8UjTjLBuo8O/download -O EWinoData.tar.gz
 ``
 
+The tarball contains 3 folders containing
+the SLHA files (slha_scanRandom), the SModelS output (smodels_scanRandom) and the Micromegas output (micromegas_scanRandom).
 
-``
-wget https://cernbox.cern.ch/index.php/s/pxWWf83EAD6vYmi/download -O micromegas_scanRandom.tar.gz
-``
+
+### Scotogenic Scan data ###
+
+#### Scalar DM Scenario ####
+
+
+#### Fermionic DM Scenario ####
