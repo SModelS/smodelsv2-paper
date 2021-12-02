@@ -238,17 +238,13 @@ def plotCurvesTopo2(frame,frameHSCP,title,path_to_plot):
     ax.set_ylim(bottom=min(frame['MASS9000006']),top=max(frame['MASS9000006']))
     
     plt.scatter(frame['MASS37'],frame['MASS9000006'],c=frame['r_max'],alpha=1,cmap='jet',vmax=1.2,vmin=.1,s=55)
-    cbar=plt.colorbar(label='$r_{max}$')
+    cbar=plt.colorbar(label='$r_{\\mathrm{max}}$')
    
-    cbar.set_label(label='$r_{max}$', size=20)
+    cbar.set_label(label='$r_{\\mathrm{max}}$', size=20)
     cbar.ax.tick_params(labelsize=15)
-    frame_displaced=frame.loc[frame['Disp']>1]
-    frame_analysis2d=frame_displaced[['MASS37','MASS9000006']]
-    frame_analysis2d=frame_analysis2d.to_numpy()
-    print(frame_analysis2d)
-    alpha_shape = alphashape.alphashape(frame_analysis2d, .099)
-    print(alpha_shape)
-    ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='pink',fill=False,zorder=20,lw=2,label='Displaced lepton'))
+    
+    
+    
     
     plt.subplots_adjust(bottom=.13)
     plt.subplots_adjust(left=.13)
@@ -261,6 +257,90 @@ def plotCurvesTopo2(frame,frameHSCP,title,path_to_plot):
     alpha_shape = alphashape.alphashape(frame_analysis2d, .09)
     print(alpha_shape)
     ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='white',fill=False,lw=2,label='HSCP'))
+    
+    
+    frame_displaced=frame.loc[frame['Disp']>1]
+    frame_analysis2d=frame_displaced[['MASS37','MASS9000006']]
+    frame_analysis2d=frame_analysis2d.to_numpy()
+    print(frame_analysis2d)
+    alpha_shape = alphashape.alphashape(frame_analysis2d, .099)
+    print(alpha_shape)
+    ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='pink',fill=False,zorder=20,lw=2,label='Displaced lepton'))
+    
+    
+    plt.legend(loc='upper left',framealpha=.6,labelcolor='black',fontsize=15)
+    #print(alpha_shape)
+   # Patch(alpha_shape,'.',c='yellow')
+    plt.yscale('log')
+    plt.ylabel('$ m_{N_{1}}$ (GeV)',fontsize=19)
+    plt.xlabel('$ m_{H^{\\pm}}$ (GeV)',fontsize=19)
+    plt.xticks(fontsize=15)
+    plt.yticks(fontsize=15)
+    plt.title(title,fontsize=15)
+    plt.savefig(path_to_plot)
+    plt.close()
+   
+    return
+    
+    
+    
+def plotCurvesTopoalsonocomb2(frame,frameHSCP,frameNocomb,title,path_to_plot):
+    
+    
+    frame=frame.loc[frame['MASS37']<900]
+    fig, ax = plt.subplots()
+    #ax.scatter(frame['m(N1)'],frame['m(H+)'],c=frame['r_max'],alpha=1,cmap='jet',vmax=1.2,vmin=.1)
+    #ax.set_xscale('log')
+   # plt.colorbar()
+    
+    ax.set_xlim(left=min(frame['MASS37']),right=max(frame['MASS37']))
+    ax.set_ylim(bottom=min(frame['MASS9000006']),top=max(frame['MASS9000006']))
+    
+    plt.scatter(frame['MASS37'],frame['MASS9000006'],c=frame['r_max'],alpha=1,cmap='jet',vmax=1.2,vmin=.1,s=55)
+    cbar=plt.colorbar(label='$r_{\\mathrm{max}}$')
+   
+    cbar.set_label(label='$r_{\\mathrm{max}}$', size=20)
+    cbar.ax.tick_params(labelsize=15)
+    
+    
+    
+    
+    plt.subplots_adjust(bottom=.13)
+    plt.subplots_adjust(left=.13)
+    
+    frame_excluded=frameHSCP.loc[frameHSCP['r_max']>1]
+    frame_analysis=frame_excluded.loc[frame_excluded['Tx']!='TSelSelDisp']
+    frame_analysis2d=frame_analysis[['MASS37','MASS9000006']]
+    frame_analysis2d=frame_analysis2d.to_numpy()
+    print(frame_analysis2d)
+    alpha_shape = alphashape.alphashape(frame_analysis2d, .09)
+    print(alpha_shape)
+    ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='white',fill=False,lw=2,label='HSCP'))
+    
+    
+    frame_displaced=frame.loc[frame['Disp']>1]
+    frame_analysis2d=frame_displaced[['MASS37','MASS9000006']]
+    frame_analysis2d=frame_analysis2d.to_numpy()
+    print(frame_analysis2d)
+    alpha_shape = alphashape.alphashape(frame_analysis2d, .099)
+    print(alpha_shape)
+    ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='pink',fill=False,zorder=20,lw=2,label='Displaced lepton'))
+    
+    
+    
+    #frame_displaced=frame.loc[frame['Disp']>1]
+    frame_displaced_nocomb=frameNocomb.loc[(frameNocomb['Tx']=='TSelSelDisp') | (frameNocomb['Tx']=='TSmuSmuDisp')]
+    
+    frame_displaced_nocomb=frame_displaced_nocomb.loc[frame_displaced_nocomb['r_max']>1]
+    
+    frame_analysis2d=frame_displaced_nocomb[['MASS37','MASS9000006']]
+    frame_analysis2d=frame_analysis2d.to_numpy()
+    print(frame_analysis2d)
+    alpha_shape = alphashape.alphashape(frame_analysis2d, .099)
+    print(alpha_shape)
+    ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ls='--',ec='pink',fill=False,zorder=20,lw=2,label='Displaced lepton (w/o comb.)'))
+    
+    
     plt.legend(loc='upper left',framealpha=.6,labelcolor='black',fontsize=15)
     #print(alpha_shape)
    # Patch(alpha_shape,'.',c='yellow')
@@ -294,13 +374,7 @@ def plotCurvesTopoCtau2(frame,frameHSCP,title,path_to_plot):
     plt.scatter(frame['MASS37'],frame['ctau(37)'],c=frame['r_max'],alpha=1,cmap='jet',vmax=1.2,vmin=.1,s=55)
     plt.colorbar(label='$r_{max}$')
     
-    frame_displaced=frameHSCP.loc[frameHSCP['Disp']>1]
-    frame_analysis2d=frame_displaced[['MASS37','ctau(37)']]
-    frame_analysis2d=frame_analysis2d.to_numpy()
-    print(frame_analysis2d)
-    alpha_shape = alphashape.alphashape(frame_analysis2d, .099)
-    print(alpha_shape)
-    ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='pink',fill=False,zorder=20,lw=2,label='Displaced lepton'))
+   
     
     
     frameHSCP['ctau(37)']=frameHSCP['ctau(37)']
@@ -315,6 +389,24 @@ def plotCurvesTopoCtau2(frame,frameHSCP,title,path_to_plot):
     alpha_shape = alphashape.alphashape(frame_analysis2d, .002)
     print(alpha_shape)
     ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='white',fill=False,lw=2,label='HSCP'))
+    
+    
+    frame_displaced=frameHSCP.loc[frameHSCP['Disp']>1]
+    frame_analysis2d=frame_displaced[['MASS37','ctau(37)']]
+    frame_analysis2d=frame_analysis2d.to_numpy()
+    print(frame_analysis2d)
+    alpha_shape = alphashape.alphashape(frame_analysis2d, .099)
+    print(alpha_shape)
+    ax.add_patch(PolygonPatch(alpha_shape, alpha=1,ec='pink',fill=False,zorder=20,lw=2,label='Displaced lepton'))
+    
+    
+    
+    
+    
+    
+    
+    
+    
     plt.legend(loc='upper left',framealpha=.6,labelcolor='black')
     #print(alpha_shape)
    # Patch(alpha_shape,'.',c='yellow')
@@ -378,22 +470,26 @@ def comparing_compression(frame_comp,frame_nocomp,title,path_to_plot):
 
 
     
-path_to_frame='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_50_muons_3.txt'
+path_to_frame='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_50_5050leptons.txt'
 #path_to_frame='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_delta5_muons_compression.txt'
-path_to_onlyHSCPframe='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_50_muons_onlyHSCP_3.txt'
-title='Fermionic DM, $\\Delta m=50$ GeV, $ H^\pm\\to \\mu ^\pm  N_1$'
+path_to_onlyHSCPframe='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_50_5050leptons_onlyHSCP.txt'
+path_to_nocomb='/Users/humberto/Documents/work/Scoto-IDM/smodels-dev/smodels/frame_50_5050leptons_nocomb.txt'
+
+title='Fermionic DM, $\\Delta m=50$ GeV, $ H^\pm\\to l ^\pm  N_1$'
 
 #path_to_plot='static_plots/plot_analysis_larger_delta5_electrons_compression.png'
 #path_to_plot_topo='static_plots/plot_topo_larger_delta5_muons_compression.png'
-path_to_plot_ctau_curves='plots/plot_curves_ctau_delta50_muons_3_lim900.png'
-path_to_plot_curves='plots/plot_curves_delta50_muons_3_lim900.png'
+path_to_plot_ctau_curves='plots/plot_curves_ctau_delta50_5050leptons__wocomb_3_lim900.png'
+path_to_plot_curves='plots/plot_curves_delta50_5050leptons_wocomb_3_lim900.png'
 frame=openframe(path_to_frame)
 HSCPframe=openframe(path_to_onlyHSCPframe)
+frameNocomb=openframe(path_to_nocomb)
 #plotterAnalyses(frame,title,path_to_plot)
 #plotterTopo(frame,title,path_to_plot_topo)
 #plotCurvesTopo(frame,title,path_to_plot_curves)
-plotCurvesTopo2(frame,HSCPframe,title,path_to_plot_curves)
-plotCurvesTopoCtau2(frame,HSCPframe,title,path_to_plot_ctau_curves)
+#plotCurvesTopo2(frame,HSCPframe,title,path_to_plot_curves)
+#plotCurvesTopoCtau2(frame,HSCPframe,title,path_to_plot_ctau_curves)
+plotCurvesTopoalsonocomb2(frame,HSCPframe,frameNocomb,title,path_to_plot_curves)
 #plotterTopoHSCPind(frame,title,path_to_plot_topo)
 
 '''
