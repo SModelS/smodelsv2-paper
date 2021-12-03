@@ -1,1 +1,0 @@
-smodelsOutput = {'OutputStatus': {'sigmacut': 5e-07, 'minmassgap': 5.5, 'maxcond': 0.2, 'ncpus': 1, 'file status': -5, 'decomposition status': -2, 'warnings': 'Unknown input type: None', 'input file': '../../github/smodelsv2-paper/IDM-Scoto/fermionicDM_scan/mhc_scan_withdecays/IDM_scan_mhc_dm_5_mhcdecays/.DS_Store', 'database version': '2.1.0', 'smodels version': '2.1.0'}}
