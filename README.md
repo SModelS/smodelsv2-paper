@@ -58,19 +58,19 @@ Each folder has the following structure:
    * deltam_5: scan with m<sub>H<sup>0<sup></sub>-m<sub>H<sup>+<sup></sub> = 5 GeV
    * deltam_50: scan with m<sub>H<sup>0<sup></sub>-m<sub>H<sup>+<sup></sub> = 50 GeV
 
-   ## Results and Plotting ##
+## Results and Plotting ##
 
-   ### EW-ino ###
+### EW-ino ###
 
-   The SLHA input and SModelS output can be easily combined using Pandas DataFrames and stored
-   as a pickle file, as shown in [EWino/results/getEWinoData.ipynb](EWino/results/getEWinoData.ipynb).
+The SLHA input and SModelS output can be easily combined using Pandas DataFrames and stored
+as a pickle file, as shown in [EWino/results/getEWinoData.ipynb](EWino/results/getEWinoData.ipynb).
 
-   For plotting the results using the DataFrame pickle file, see [EWino/results/plots-EWinoScan.ipynb](EWino/results/plots-EWinoScan.ipynb)
+For plotting the results using the DataFrame pickle file, see [EWino/results/plots-EWinoScan.ipynb](EWino/results/plots-EWinoScan.ipynb)
 
-   ### Scotogenic Scalar DM ###
+### Scotogenic Scalar DM ###
 
-   The SLHA input and SModelS output can be read and plotted using the notebook example
-    [IDM-Scoto/scalar_DM_scenario/plotScotoScalarExample.ipynb](IDM-Scoto/scalar_DM_scenario/plotScotoScalarExample.ipynb).
+The SLHA input and SModelS output can be read and plotted using the notebook example
+ [IDM-Scoto/scalar_DM_scenario/plotScotoScalarExample.ipynb](IDM-Scoto/scalar_DM_scenario/plotScotoScalarExample.ipynb).
 
 
 ## Running the scans
