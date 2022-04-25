@@ -92,6 +92,8 @@ def computeProspinoXsecs(parserDict):
 
     if parser.has_option('options','sqrts'):
         sqrtsList = parser.get('options','sqrts')
+        if isinstance(sqrtList,(float,int)):
+            sqrtsList = [sqrtstList]
     else:
         sqrtsList = [8000.,13000.]
 
