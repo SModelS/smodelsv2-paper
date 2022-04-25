@@ -90,7 +90,12 @@ def computeProspinoXsecs(parserDict):
         logger.error("Could not found Prospino folder %s" %prospinoFolder)
         return False
 
-    for sqrts in [8000.,13000.]:
+    if parser.has_option('options','sqrts'):
+        sqrtsList = parser.get('options','sqrts')
+    else:
+        sqrtsList = [8000.,13000.]
+
+    for sqrts in sqrtsList:
         logger.debug("Running ./prospino_ewino.run %s %s" %(file,sqrts))
         run = subprocess.Popen('./prospino_ewino.run %s %s' %(file,sqrts)
                    ,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=prospinoFolder)

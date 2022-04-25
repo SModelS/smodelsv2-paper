@@ -61,10 +61,10 @@ isquark2_in = 0
 
   call MYPROSPINO_OPEN_CLOSE(0,filename)                                                            ! open all input/output files
 
-  do icount = 1,4,1
-    do jcount = 1,4,1
-      if (icount > jcount) then
-         continue
+  do icount = 1,size(i1),1
+    do jcount = 1,size(i1),1
+      if (icount.GT.jcount) then
+         cycle
       end if
 
       ipart1_in = i1(icount)
