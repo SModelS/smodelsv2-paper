@@ -156,7 +156,7 @@ def main(parfile,verbose):
     pool = multiprocessing.Pool(processes=ncpus)
     children = []
     #Loop over parsers and submit jobs
-    for newParser in parserList:
+    for i,newParser in enumerate(parserList):
         parserDict = newParser.toDict(raw=False) #Must convert to dictionary for pickling
         # Check if files already containing Prospino cross-sections should be skipped
         if 'skipFiles' in parserDict['options']:
@@ -164,7 +164,8 @@ def main(parfile,verbose):
         else:
             skipFiles = False
         if skipFiles:
-            logger.info('Skipping files containing Prospino cross-sections')
+            if i == 0:
+                logger.info('Skipping files containing Prospino cross-sections')
             filename = parserDict['options']['file']
             with open(filename,'r') as f:
                 if 'Prospino for NLO' in f.read():
